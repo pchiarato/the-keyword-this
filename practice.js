@@ -1,19 +1,22 @@
 //We're in a job interview. Answer the following questions (try to not look at your notes unless you have to).
   // 1) What is the purpose of the 'this keyword'?
 
-      //Answer
+      // the "this" keyword is an placeholder for the object that will be calling the function either implict or explicit.
 
   // 2) What are the four rules that govern what the 'this keyword' is bound to and describe each?
 
-      //Answer
+      //explicit => you intentionally bind it to an object using .call .apply and bind.
+
+        //implicit => this key word will be used to what ever object is invoking to the left of the period ex: obj.function(args);
 
   // 3) What is the difference between call and apply?
 
-      //Answer
+      // .call takes an object as first paramter followed by arguments separated by commas,
+    // apply takes an object as first paramter and an array [] with the arguments inside of them.
 
   // 4) What does .bind do?
 
-      //Answer
+     //binds the "this" function to an object when saved to a variable to be called at a later time.
 
 
 //Next Problem
@@ -23,15 +26,27 @@
   //email --> which is a string
   //getUsername --> which is a function that returns the current object's username property. *Don't use 'user' instead use the 'this' keyword*
 
-    //Code Here
+    var user ={username:"phillip",email:"phillip@gmail.com",getUsername:function(){return this.username;}}
 
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
-
+                user.getUsername();
 
 //Next Problem
 
 
 // Write a constructor function, including method definitions, which will make the following function invocations function properly.
+
+
+        function Car(manufacture,model,year){
+            this.manufacture = manufacture;
+            this.model = model;
+            this.year = year;
+            this.move = 0;
+            this.moveCar = function(){
+                return this.move+=10;
+            }
+        }
+
 
   //Function Invocations Here
 
@@ -54,7 +69,8 @@ var getYear = function(){
 //Above you're given the getYear function. Call the getYear function with the prius then the mustang objects being the focal objects. *Don't add getYear as a property on both objects*.
 
 //Note(no tests)
-  //Code Here
+  getYear.call(prius);
+  getYear.call(mustang);
 
 
 //New Problem
@@ -69,15 +85,15 @@ var getMyUsername = function() {
  return this.username;
 };
 
-var userName = getMyUsername(); //Fix this
+var userName = getMyUsername.call(myUser); //Fix this
 
 //Above you're given an object, and  a function. What will the getMyUsername function return?
 //Note(no tests)
-  //Answer Here
+  // myUser => username;
 
 //In the example above, what is the 'this keyword' bound to when getMyUsername runs?
 
-  //Answer Here
+   //after it was bounded to the object myUser it was bounded to that. 
 
 
 //Fix the getMyUsername invocation (stored in the userName variable, at the bottom of the above code) so that userName will be equal to 'iliketurtles'.
